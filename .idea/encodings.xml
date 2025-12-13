@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/Eurekaserver/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/configserver/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/msemprunt/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mslivre/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/msutilisateur/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/reactivegateway/src/main/java" charset="UTF-8" />
+  </component>
+</project>
