@@ -1,5 +1,6 @@
 package com.example.mslivre.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum Category {
@@ -27,5 +28,15 @@ public enum Category {
     @JsonValue
     public String getDisplayName() {
         return displayName;
+    }
+    @JsonCreator
+    public static Category fromValue(String value) {
+        for (Category category : Category.values()) {
+            if (category.name().equalsIgnoreCase(value)
+                    || category.displayName.equalsIgnoreCase(value)) {
+                return category;
+            }
+        }
+        throw new IllegalArgumentException("Unknown category: " + value);
     }
 }

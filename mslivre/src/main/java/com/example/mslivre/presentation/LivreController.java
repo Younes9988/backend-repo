@@ -20,7 +20,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/livres")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*")
+
 public class LivreController {
 
     private final ILivreService livreService;

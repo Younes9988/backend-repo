@@ -11,7 +11,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/emprunts")
 @RequiredArgsConstructor
-@CrossOrigin("*")
 public class EmpruntController {
 
     private final IEmpruntService empruntService;

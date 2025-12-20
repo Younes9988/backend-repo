@@ -72,7 +72,13 @@ public class LivreServiceImpl implements ILivreService {
         // Since we don't have 'copiesDisponibles' or connection to borrows,
         // we strictly update the total inventory count.
         existingLivre.setNombreCopies(livreDto.getNombreCopies());
-
+        if (!existingLivre.getIsbn().equals(livreDto.getIsbn())) {
+            livreRepository.findByIsbn(livreDto.getIsbn())
+                    .ifPresent(l -> {
+                        throw new IllegalStateException("Un livre avec cet ISBN existe déjà.");
+                    });
+        }
+        existingLivre.setIsbn(livreDto.getIsbn());
         Livre savedLivre = livreRepository.save(existingLivre);
         return livreMapper.fromEntity(savedLivre);
     }
