@@ -19,7 +19,7 @@ import java.util.List;
 public class UtilisateurServiceImpl implements IUtilisateurService {
 
     private final UtilisateurRepository utilisateurRepository;
-    private final PasswordEncoder passwordEncoder;
+
     private final UtilisateurMapper mapper;
 
     @Override
@@ -34,7 +34,7 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
         Lecteur lecteur = mapper.toLecteur(dto);
 
         // Encode password
-        lecteur.setMotDePasse(passwordEncoder.encode(dto.getMotDePasse()));
+
         lecteur.setDateInscription(LocalDate.now());
         lecteur.setActif(true);
 

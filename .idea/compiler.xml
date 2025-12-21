@@ -22,9 +22,8 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.5.5.Final/mapstruct-1.5.5.Final.jar" />
         </processorPath>
         <module name="msutilisateur" />
-        <module name="reactivegateway" />
       </profile>
-      <profile name="Annotation profile for msauth" enabled="true">
+      <profile name="Annotation profile for reactivegateway" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -32,6 +31,7 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
         </processorPath>
         <module name="msauth" />
+        <module name="reactivegateway" />
       </profile>
     </annotationProcessing>
   </component>

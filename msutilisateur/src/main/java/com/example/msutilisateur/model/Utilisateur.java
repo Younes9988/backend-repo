@@ -27,13 +27,12 @@ public abstract class Utilisateur {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
-    private String motDePasse; // hashed
 
-    @Column(nullable = false)
+
+    @Column(nullable = true)
     private String telephone;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String adresse;
 
     @Column(nullable = false)

@@ -12,6 +12,14 @@ public class GatewayRoutesConfig {
     @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         return builder.routes()
+                .route("msauth-route", r -> r
+                        .path("/AUTH/**")
+                        .filters(f -> f
+                                .rewritePath("/AUTH/(?<remaining>.*)", "/${remaining}")
+                                .addRequestHeader("X-Request-Origin", "Gateway")
+                        )
+                        .uri("lb://MSAUTH")
+                )
                 // Route for msutilisateur
                 .route("msutilisateur-route", r -> r
                         .path("/MSUTILISATEUR/**")
@@ -22,6 +30,7 @@ public class GatewayRoutesConfig {
                         )
                         .uri("lb://MSUTILISATEUR")
                 )
+
                 // Route for mslivre
                 .route("mslivre-route", r -> r
                         .path("/MSLIVRE/**")
