@@ -33,7 +33,10 @@ public class UtilisateurController {
     public ResponseEntity<List<UtilisateurDTO>> getAllUsers() {
         return ResponseEntity.ok(utilisateurService.getAllUtilisateurs());
     }
-
+    @GetMapping("/by-email/{email}")
+    public UtilisateurDTO getByEmail(@PathVariable String email) {
+        return utilisateurService.getByEmail(email);
+    }
     // ---------------------------
     // GET ONE USER BY ID
     // ---------------------------

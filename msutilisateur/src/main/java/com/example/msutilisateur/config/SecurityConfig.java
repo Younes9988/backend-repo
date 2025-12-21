@@ -22,7 +22,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // 🔓 allow internal registration
                         .requestMatchers("/api/utilisateurs/lecteur").permitAll()
-
+                        .requestMatchers("/api/utilisateurs/by-email/**")
+                        .hasAnyRole("LECTEUR", "BIBLIOTHECAIRE", "SERVICE")
                         // 🔒 everything else stays protected
                         .requestMatchers("/api/utilisateurs/**").hasAnyRole("BIBLIOTHECAIRE", "SERVICE")
                         .anyRequest().authenticated()

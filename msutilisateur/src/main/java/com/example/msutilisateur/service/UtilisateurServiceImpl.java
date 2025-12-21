@@ -57,7 +57,12 @@ public class UtilisateurServiceImpl implements IUtilisateurService {
 
         return mapper.toDto(utilisateur);
     }
+    public UtilisateurDTO getByEmail(String email) {
+        Utilisateur utilisateur = utilisateurRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("Utilisateur introuvable"));
 
+        return mapper.toDto(utilisateur);
+    }
     @Override
     public void deleteUtilisateur(Long id) {
         utilisateurRepository.deleteById(id);
