@@ -24,7 +24,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/utilisateurs/lecteur").permitAll()
 
                         // 🔒 everything else stays protected
-                        .requestMatchers("/api/utilisateurs/**").hasRole("BIBLIOTHECAIRE")
+                        .requestMatchers("/api/utilisateurs/**").hasAnyRole("BIBLIOTHECAIRE", "SERVICE")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(
