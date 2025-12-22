@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/reactivegateway/pom.xml" />
         <option value="$PROJECT_DIR$/msutilisateur/pom.xml" />
         <option value="$PROJECT_DIR$/msauth/pom.xml" />
+        <option value="$PROJECT_DIR$/msnotification/pom.xml" />
       </list>
     </option>
   </component>

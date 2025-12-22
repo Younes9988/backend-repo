@@ -15,7 +15,6 @@ public class UtilisateurDTO {
     private String nom;
     private String prenom;
     private String email;
-    private String motDePasse;
     private String telephone;
     private String adresse;
     private LocalDate dateInscription;

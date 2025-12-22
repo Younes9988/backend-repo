@@ -27,4 +27,12 @@ public class Emprunt {
     private StatutEmprunt statut;
 
     private double penalite;
+    private Boolean rappelJ1Envoye = false;
+    private LocalDate dateRappelJ1;
+
+    // Penalty tracking
+    private LocalDate dateDernierePenalite;
+
+    // Overdue notification
+    private Boolean notificationRetardEnvoyee = false;
 }
