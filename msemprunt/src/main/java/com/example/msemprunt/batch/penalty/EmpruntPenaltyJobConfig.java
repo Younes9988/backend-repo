@@ -1,6 +1,6 @@
-package com.example.msemprunt.batch;
+package com.example.msemprunt.batch.penalty;
 
-import com.example.msemprunt.batch.dto.EmpruntNotification;
+
 import com.example.msemprunt.model.Emprunt;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -18,18 +18,19 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
 @EnableBatchProcessing
-public class EmpruntReminderJobConfig {
+public class EmpruntPenaltyJobConfig {
 
     @Bean
-    public Step empruntReminderStep(
-            @Qualifier("empruntReminderReader") ItemReader<Emprunt> reader,
-            ItemProcessor<Emprunt, EmpruntNotification> processor,
-            ItemWriter<EmpruntNotification> writer,
+    public Step empruntPenaltyStep(
+            @Qualifier("overdueEmpruntReader") ItemReader<Emprunt> reader,
+            ItemProcessor<Emprunt, PenaltyResult> processor,
+            ItemWriter<PenaltyResult> writer,
             JobRepository jobRepository,
             PlatformTransactionManager transactionManager
     ) {
-        return new StepBuilder("empruntReminderStep", jobRepository)
-                .<Emprunt, EmpruntNotification>chunk(10, transactionManager)
+
+        return new StepBuilder("empruntPenaltyStep", jobRepository)
+                .<Emprunt, PenaltyResult>chunk(10, transactionManager)
                 .reader(reader)
                 .processor(processor)
                 .writer(writer)
@@ -37,12 +38,12 @@ public class EmpruntReminderJobConfig {
     }
 
     @Bean
-    public Job empruntReminderJob(
+    public Job empruntPenaltyJob(
             JobRepository jobRepository,
-            Step empruntReminderStep
+            Step empruntPenaltyStep
     ) {
-        return new JobBuilder("empruntReminderJob", jobRepository)
-                .start(empruntReminderStep)
+        return new JobBuilder("empruntPenaltyJob", jobRepository)
+                .start(empruntPenaltyStep)
                 .build();
     }
 }
