@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
+import java.time.LocalDate;
+
 @Configuration
 @EnableScheduling
 public class EmpruntReminderScheduler {
@@ -22,14 +24,15 @@ public class EmpruntReminderScheduler {
         this.empruntReminderJob = empruntReminderJob;
     }
 
-    // ⏰ Every day at 08:00
-    //@Scheduled(cron = "0 0 8 * * *")
+    // Every day at 02:00
     @Scheduled(cron = "0 0 2 * * *")
+    //@Scheduled(cron = "*/30 * * * * *")
     public void runDailyReminderJob() throws Exception {
 
         jobLauncher.run(
                 empruntReminderJob,
                 new JobParametersBuilder()
+                        .addLocalDate("targetDate", LocalDate.now().plusDays(1))
                         .addLong("timestamp", System.currentTimeMillis())
                         .toJobParameters()
         );
