@@ -26,7 +26,7 @@ public class GatewayRoutesConfig {
                         .filters(f -> f
                                 .rewritePath("/MSUTILISATEUR/(?<remaining>.*)", "/${remaining}")
                                 .addRequestHeader("X-Request-Origin", "Gateway")
-                                .filter(new CustomGatewayFilter())
+
                         )
                         .uri("lb://MSUTILISATEUR")
                 )
@@ -37,7 +37,7 @@ public class GatewayRoutesConfig {
                         .filters(f -> f
                                 .rewritePath("/MSLIVRE/(?<remaining>.*)", "/${remaining}")
                                 .addRequestHeader("X-Request-Origin", "Gateway")
-                                .filter(new CustomGatewayFilter())
+
                         )
                         .uri("lb://MSLIVRE")
                 )
@@ -47,7 +47,7 @@ public class GatewayRoutesConfig {
                         .filters(f -> f
                                 .rewritePath("/MSEMPRUNT/(?<remaining>.*)", "/${remaining}")
                                 .addRequestHeader("X-Request-Origin", "Gateway")
-                                .filter(new CustomGatewayFilter())
+
                         )
                         .uri("lb://MSEMPRUNT")
                 )

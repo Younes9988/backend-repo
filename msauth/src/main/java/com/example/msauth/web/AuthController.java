@@ -77,8 +77,8 @@ public class AuthController {
             utilisateurRequest.setEmail(request.getEmail());
             utilisateurRequest.setNom(request.getNom());
             utilisateurRequest.setPrenom(request.getPrenom());
-            utilisateurRequest.setTelephone("0000000000"); // or from request later
-            utilisateurRequest.setAdresse("N/A");
+            utilisateurRequest.setTelephone(request.getTelephone()); // or from request later
+            utilisateurRequest.setAdresse(request.getAdresse());
             utilisateurRequest.setDateInscription(LocalDate.now());
             utilisateurRequest.setActif(true);
             utilisateurClient.createLecteur(utilisateurRequest);

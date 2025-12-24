@@ -19,11 +19,10 @@ import java.util.List;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
-
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
-        String path = request.getServletPath();
-        return path.equals("/auth/login") || path.equals("/auth/register");
+        String uri = request.getRequestURI();
+        return uri.contains("/auth/login") || uri.contains("/auth/register");
     }
 
     @Override

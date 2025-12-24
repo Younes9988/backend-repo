@@ -16,7 +16,7 @@ import java.security.Key;
 import java.util.List;
 
 @Component
-public class CustomGatewayFilter implements GatewayFilter {
+public class CustomGatewayFilter implements  GlobalFilter {
 
     private static final String SECRET =
             "MySuperSecretKeyThatIsAtLeast32CharactersLong";
@@ -27,16 +27,21 @@ public class CustomGatewayFilter implements GatewayFilter {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-
         String path = exchange.getRequest().getURI().getPath();
 
-// Public auth endpoints
-        if (path.startsWith("/AUTH/auth/login") || path.startsWith("/AUTH/auth/register")) {
+// allow preflight
+        if (exchange.getRequest().getMethod() == HttpMethod.OPTIONS) {
             return chain.filter(exchange);
         }
 
-// Internal registration call (AFTER StripPrefix)
-        if (path.equals("/api/utilisateurs/lecteur")) {
+// ✅ allow auth endpoints in BOTH forms
+        if (path.startsWith("/AUTH/auth/login") || path.startsWith("/AUTH/auth/register")
+                || path.startsWith("/auth/login") || path.startsWith("/auth/register")) {
+            return chain.filter(exchange);
+        }
+
+// ✅ allow internal registration call AFTER rewrite
+        if (path.startsWith("/api/utilisateurs/lecteur")) {
             return chain.filter(exchange);
         }
         // 🔒 Check Authorization header

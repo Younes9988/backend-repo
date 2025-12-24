@@ -1,5 +1,6 @@
 package com.example.msutilisateur.presentation;
 
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.msutilisateur.dto.LecteurDTO;
 import com.example.msutilisateur.dto.UtilisateurDTO;
@@ -21,7 +22,7 @@ public class UtilisateurController {
     // CREATE LECTEUR
     // ---------------------------
     @PostMapping("/lecteur")
-    public ResponseEntity<LecteurDTO> createLecteur(@RequestBody LecteurDTO lecteurDTO) {
+    public ResponseEntity<LecteurDTO> createLecteur(@RequestBody @Valid LecteurDTO lecteurDTO) {
         LecteurDTO saved = utilisateurService.createLecteur(lecteurDTO);
         return ResponseEntity.ok(saved);
     }
