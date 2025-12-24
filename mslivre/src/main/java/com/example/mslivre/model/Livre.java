@@ -22,7 +22,7 @@ public class Livre {
 
     @Column(unique = true)
     private String isbn;
-
+    @Column(columnDefinition = "LONGTEXT")
     private String description;
     private String image;
 
